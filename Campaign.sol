@@ -94,7 +94,7 @@ contract Campaign {
         uint256 remainder = contributed - devideAmount - devideAmount;
 
         ICampaignFactory(factory).GPStake(msg.sender, remainder);
-        if(approvers[ref] == true || ref == topDev) ICampaignFactory(factory).GPStakeForReferral(ref, remainder);
+        ICampaignFactory(factory).GPStakeForReferral(ref, remainder);
         teamLeader = ICampaignFactory(factory).getOwnerAddress();
             
         payable(teamLeader).transfer(devideAmount);
