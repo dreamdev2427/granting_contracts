@@ -20,7 +20,6 @@ contract Campaign {
     address public manager;
     uint256 public minimunContribution;
     uint256 public targetToAchieve;
-    address[] public contributers;
     mapping(address => bool) public approvers;
     mapping(uint256 => mapping(address => bool)) approvals;
     uint256 public approversCount;
@@ -86,7 +85,6 @@ contract Campaign {
 
     function contribute(address ref) external payable {
         require(msg.value > minimunContribution );
-        contributers.push(msg.sender);
         approvers[msg.sender] = true;
         approversCount += 1;
 
@@ -96,7 +94,7 @@ contract Campaign {
         uint256 remainder = contributed - devideAmount - devideAmount;
 
         ICampaignFactory(factory).GPStake(msg.sender, remainder);
-        ICampaignFactory(factory).GPStakeForReferral(ref, remainder);
+        if(approvers[ref] == true || ref == topDev) ICampaignFactory(factory).GPStakeForReferral(ref, remainder);
         teamLeader = ICampaignFactory(factory).getOwnerAddress();
             
         payable(teamLeader).transfer(devideAmount);
