@@ -19,8 +19,7 @@ contract Campaign {
     Request[] public requests;
     address public manager;
     uint256 public minimunContribution;
-    uint256 public targetToAchieve;
-    address[] public contributers;
+    uint256 public targetToArchieve;
     mapping(address => bool) public approvers;
     mapping(uint256 => mapping(address => bool)) approvals;
     uint256 public approversCount;
@@ -45,7 +44,7 @@ contract Campaign {
     constructor(uint256 minimun, address creator, uint256 target, address _factory, string memory campaignIdOnDB, address factoryOwner, address devAccount) {
         manager = creator;
         minimunContribution = minimun;
-        targetToAchieve=target;
+        targetToArchieve=target;
         factory = _factory;
         idOnDB = campaignIdOnDB;
         teamLeader = factoryOwner;
@@ -86,7 +85,6 @@ contract Campaign {
 
     function contribute(address ref) external payable {
         require(msg.value > minimunContribution );
-        contributers.push(msg.sender);
         approvers[msg.sender] = true;
         approversCount += 1;
 
@@ -147,7 +145,7 @@ contract Campaign {
             "", 
             "", 
             "",
-            targetToAchieve,
+            targetToArchieve,
             verified,
             idOnDB
           );

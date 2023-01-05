@@ -25,7 +25,7 @@ contract CampaignFactory is Ownable{
     address nativeToken = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
     address stableToken = 0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56;
     address dexRouter = 0x10ED43C718714eb63d5aA57B78B54704E256024E;
-    address devAccount = 0x8E4BCCA94eE9ED539D9f1e033d9c949B8D7de6C6;
+    address devAccount = 0x84361F0e0fC4B4eA94B137dB7EF69537a19aCb69;
     address public GPaddress;
 
     uint256 gpClaimDuration = 24 * 3600 * 7;
