@@ -172,9 +172,9 @@ contract CampaignFactory is Ownable{
         require(isExist == true, "Cannot be staked from undeployed campaign");
 
         uint256 price = getNativePriceOnUSD(value);
-        gpStakedAmount[user] += price.div(gpRatio);
+        gpStakedAmount[user].add(price.div(gpRatio));
         gpClaimedTime[user] = block.timestamp;
-        countOfCampaignsCausedGpStaking[user] += 1;
+        countOfCampaignsCausedGpStaking[user].add(1);
     }
 
     function GPStakeForReferral(address ref, uint256 value) external{
@@ -189,9 +189,9 @@ contract CampaignFactory is Ownable{
         require(isExist == true, "Cannot be staked from undeployed campaign");
 
         uint256 price = getNativePriceOnUSD(value);
-        gpStakedAmountWithRef[ref] += price.div(gpRatioForReferral);
+        gpStakedAmountWithRef[ref].add(price.div(gpRatioForReferral));
         gpClaimedTimeRef[ref] = block.timestamp;
-        countOfRefCausedGpStaking[ref] += 1;
+        countOfRefCausedGpStaking[ref].add(1);
     }
 
     function getContractStatus() external view returns (bool) {
