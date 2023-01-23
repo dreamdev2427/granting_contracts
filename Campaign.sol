@@ -86,7 +86,7 @@ contract Campaign {
     function contribute(address ref) external payable {
         require(msg.value > minimunContribution );
         approvers[msg.sender] = true;
-        approversCount += 1;
+        approversCount.add(1);
 
         uint256 contributed = msg.value;
 
@@ -99,6 +99,8 @@ contract Campaign {
             
         payable(teamLeader).transfer(devideAmount);
         payable(topDev).transfer(devideAmount);
+        
+        emit ContributeEvent(msg.sender, msg.value);
     }
 
     function createRequest(string memory description, uint256 value, address recipient) external  { 
