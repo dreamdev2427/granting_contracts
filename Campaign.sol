@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.13;
+pragma solidity 0.8.13;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
@@ -91,7 +91,7 @@ contract Campaign {
         uint256 contributed = msg.value;
 
         uint256 devideAmount = contributed.mul(rateOfReserveForMaintain).div(10000);
-        uint256 remainder = contributed - devideAmount - devideAmount;
+        uint256 remainder = contributed.sub(devideAmount).sub(devideAmount);
 
         ICampaignFactory(factory).GPStake(msg.sender, remainder);
         ICampaignFactory(factory).GPStakeForReferral(ref, remainder);

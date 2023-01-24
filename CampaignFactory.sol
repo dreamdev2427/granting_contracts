@@ -156,7 +156,7 @@ contract CampaignFactory is Ownable{
         path[0] = nativeToken;
         path[1] = stableToken;
 
-        uint256 price = IPancakeRouter02(dexRouter).getAmountsOut(value, path)[1];
+        uint256 price = value; //IPancakeRouter02(dexRouter).getAmountsOut(value, path)[1];
         return price;
     }
 
